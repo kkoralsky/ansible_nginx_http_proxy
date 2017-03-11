@@ -1,0 +1,2 @@
+---
+fname: '{% if site_name is defined %}{{ site_name }}{% else %}{{ domain }}_proxy{% endif %}'

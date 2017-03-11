@@ -1,0 +1,35 @@
+server {
+    listen {{ http_port }};
+    server_name {{ domains|join(' ') }};
+
+    {% if nginx_access_log %}
+        access_log /var/log/nginx/{{ domain }}-access.log;
+    {% else %}
+        access_log off;
+    {% endif %}
+    
+    {% if nginx_error_log %}
+        error_log /var/log/nginx/{{ domain }}-error.log;
+    {% else %}
+        error_log off;
+    {% endif %}
+
+    {% if ssl %}
+        ssl on;
+        ssl_certificate {{ cert_path }};
+        ssl_certificate_key {{ cert_key_path }};
+    {% endif %}
+
+    location / {
+        proxy_redirect      off;
+        proxy_set_header    Host                    $host;
+        proxy_set_header    X-Real-IP               $remote_addr;
+        proxy_set_header    X-Forwarded-For         $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Forwarded-Protocol    $scheme;
+        proxy_pass          http://{{ proxy_host }}:{{ proxy_port }};
+        {% if nginx_chunked_encoding %}
+            proxy_buffering off;
+            chunked_transfer_encoding on;
+        {% endif %}
+    }
+}

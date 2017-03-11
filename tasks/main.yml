@@ -1,0 +1,5 @@
+---
+- name: setup webserver
+  template: src=http_proxy.j2 dest='/etc/nginx/sites-enabled/{{ fname }}'
+  notify: reload nginx
+  tags: [webserver, upgrade]
