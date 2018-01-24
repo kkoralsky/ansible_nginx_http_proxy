@@ -19,7 +19,7 @@ Role Variables
 Dependencies
 ------------
 
-- `xkoralsky.nginx_base`
+- [nginx_base](https://github.com/kkoralsky/ansible_nginx_base)
 
 Example Playbook
 ----------------
