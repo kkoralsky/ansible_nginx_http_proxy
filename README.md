@@ -13,6 +13,11 @@ Role Variables
 - `http_redirect` - if both above variable and this is set - provide :80->https redirect
 - `cert` - public SSL certificate path 
 - `cert_key` - private SSL certificate path
+- `proxies` -  list of dictionaries:
+    - `location` - path we want to proxy,
+    - `host` - host of proxied service (defualts to `proxy_host`)
+    - `port` - port to proxied service (defualts to `proxy_port`)
+    - `remote_location` - HTTP path where we want to proxy (defaults to `.location`)
 - `proxy_host` - defaults to `127.0.0.1`
 - `proxy_port` - defaults to `8000`
 
