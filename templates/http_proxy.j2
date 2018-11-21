@@ -28,7 +28,7 @@ server {
         proxy_set_header    X-Real-IP               $remote_addr;
         proxy_set_header    X-Forwarded-For         $proxy_add_x_forwarded_for;
         proxy_set_header    X-Forwarded-Protocol    $scheme;
-        proxy_pass          http://{{ proxy.host|default(proxy_host) }}:{{ proxy.port|default(proxy_port) }}/{{ proxy.remote_location|default(proxy.location) }};
+        proxy_pass          http://{{ proxy.host|default(proxy_host) }}:{{ proxy.port|default(proxy_port) }}{{ proxy.remote_location|default(proxy.location) }};
         {% if nginx_chunked_encoding %}
             proxy_buffering off;
             chunked_transfer_encoding on;

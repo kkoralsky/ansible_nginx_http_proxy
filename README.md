@@ -14,7 +14,7 @@ Role Variables
 - `cert` - public SSL certificate path 
 - `cert_key` - private SSL certificate path
 - `proxies` -  list of dictionaries:
-    - `location` - path we want to proxy,
+    - `location` - path we want to proxy (with first forward slash),
     - `host` - host of proxied service (defualts to `proxy_host`)
     - `port` - port to proxied service (defualts to `proxy_port`)
     - `remote_location` - HTTP path where we want to proxy (defaults to `.location`)
